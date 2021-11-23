@@ -1,18 +1,17 @@
 import logo from '../logo.svg';
+import { SVGElement } from './SVGElement';
 
 const Content = () => {
     return (
         <main className="App-content">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>content component</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <SVGElement 
+          width={1200}
+          height={500}
+          x={60}
+          y={20}
         >
-          Learn React
-        </a>
+        </SVGElement>
       </main> 
     )
 }
