@@ -1,17 +1,20 @@
 import logo from '../logo.svg';
 import { SVGElement } from './SVGElement';
+import React, { useState, useEffect, useContext } from "react";
+import FetchData from '../modules/fetchData';
+
 
 const Content = () => {
+  const [Json, setJson] = useState(null);
+    useEffect(() => {
+      FetchData().then(data => setJson(data))
+      
+    })
+
     return (
         <main className="App-content">
         <img src={logo} className="App-logo" alt="logo" />
-        <SVGElement 
-          width={1200}
-          height={500}
-          x={60}
-          y={20}
-        >
-        </SVGElement>
+        {/* { Json[1]?.name } */}
       </main> 
     )
 }

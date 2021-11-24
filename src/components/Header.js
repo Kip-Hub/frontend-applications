@@ -3,8 +3,9 @@ import FetchData from "../modules/fetchData";
 const Header = () => {
 
     return (
-      <FetchData>
-      </FetchData>
+      null
+      // <FetchData>
+      // </FetchData>
     )
 }
 
