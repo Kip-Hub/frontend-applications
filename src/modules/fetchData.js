@@ -1,16 +1,15 @@
-import * as d3 from "d3";
-
-let data;
-
 const FetchData = () => {
-     return new Promise(() => {
-        d3.json("https://api.tvmaze.com/shows/169/episodes")
-        .then((json) => { 
-            data = json;
-            console.log(data)
-            return data
-        });
-        
+     return new Promise((resolve) => {
+        fetch("https://api.tvmaze.com/shows/169/episodes")
+        .then(response => response.json())
+			.then(data => {
+				const bbData = data.map(data => {
+                    console.log(data)
+					return data
+				})
+
+				resolve(bbData)
+			})
     })
 };
 

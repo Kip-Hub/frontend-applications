@@ -4,8 +4,6 @@ const Header = () => {
 
     return (
       null
-      // <FetchData>
-      // </FetchData>
     )
 }
 
