@@ -7,13 +7,15 @@ import FetchData from '../modules/fetchData';
 const Content = () => {
   const [Json, setJson] = useState(null);
     useEffect(() => {
-      FetchData().then(data => setJson(data))
+      FetchData().then(data => setJson(data));
     })
 
     return (
       <main className="App-content">
       <img src={logo} className="App-logo" alt="logo" />
-      {/* { Json[1]?.name } */}
+      
+          {JSON.stringify(Json)}
+        
       </main>
     )
 }
