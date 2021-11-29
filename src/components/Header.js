@@ -1,5 +1,3 @@
-import FetchData from "../modules/fetchData";
-
 const Header = () => {
 
     return (
