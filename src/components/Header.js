@@ -1,7 +1,9 @@
 const Header = () => {
 
     return (
-      null
+      <header className="App-header">
+        <h1>Breaking bad episode ratings</h1>
+      </header>
     )
 }
 

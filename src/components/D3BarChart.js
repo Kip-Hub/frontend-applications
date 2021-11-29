@@ -20,22 +20,29 @@ const D3BarChart = ({data}) => {
             const yaxis = d3.axisLeft().scale(yscale);
             const g_yaxis = g.append('g').attr('class', 'y axis');
 
-            xscale.domain([0, d3.max(data, (d) => d.rating.average)]); // adjusting the scales to the data ! xscale could also be 0 - 10 for consistency
+            xscale.domain([0, 
+              //d3.max(data, (d) => d.rating.average)
+            10]); 
             yscale.domain(data.map((d) => d.name));
 
             g_xaxis.transition().call(xaxis); // show values on the axis
             g_yaxis.transition().call(yaxis);
 
-            const color = d3.scaleOrdinal()
-            .domain(data.length.toString()) // domain of given data
-            .range(["#ffffcc", "#a1dab4", "#41b6c4", "#2c7fb8", "#253494"]); // range of available colors
-             const rect = g.selectAll('rect') // select the rectangles
+            // const color = d3.scaleOrdinal()
+            // .domain(data.length.toString()) // domain of given data
+            // .range(["#ffffcc", "#a1dab4", "#41b6c4", "#2c7fb8", "#253494"]); // range of available colors
+
+            const color = d3.scaleSequential(d3.interpolateRgb("#85d6d6", "#2335cf"))
+            color.domain([d3.min(data, (d) => d.rating.average), d3.max(data, (d) => d.rating.average)])
+            
+            const rect = g.selectAll('rect') // select the rectangles
             .data(data).join( //assign the data to the rectangles and join it
                 (enter) => {
                     const rect_enter = enter
                         .append('rect')
-                        .attr('x', 0) // start at 0 on the x axis
-                        .attr('fill', (d) => { return (color(d)) }); // fill the rect
+                        .attr('x', 0  ) // start at 0 on the x axis
+                        .attr('fill', (d) => color(d.rating.average)); // fill the rect
+
                     return rect_enter;
                 },
 
@@ -47,27 +54,71 @@ const D3BarChart = ({data}) => {
             rect
                 .attr('height', yscale.bandwidth())
                 .attr('y', (d) => yscale(d.name))
+                .on("mouseover", mouseOver)
+                .on("mousemove", mouseMove) // mouse events that call functions
+                .on("mouseleave", mouseOut)
                 .transition() // create transition on the rendering of the width of the bar
                 .duration(600)
-        
-            .ease(d3.easeBackOut.overshoot(1.7)) // easing with an effect
+                .ease(d3.easeBackOut.overshoot(1.7)) // easing with an effect
                 .attr('width', d => xscale(d.rating.average))
 
+              d3
+                .select("body")
+                .append("p")
+                .style("opacity", 0)
+                .attr("class", "tooltip")
+                .style("background-color", "#282c34")
+                .style("color", "white")
+                .style("padding", "0.2em")
+                .style("position", "absolute");
+
+              
+              d3
+                .selectAll('#filter')
+                .on('change', (e) => {
+                  const selectedValue = e.target.value;
+                  if (selectedValue == 'alldata') {
+                      D3BarChart(data); 
+                  } else { 
+                      const seasonValue = +selectedValue.split('_')[1]; 
+                      const filtered_data = data.filter(d => d.season === seasonValue); 
+                      D3BarChart(filtered_data);
+                  }
+              });
+              
             })
+
+            const mouseOver = () => {   
+              d3.select(".tooltip")
+              .style("opacity", 1)
+            }
+
+            const mouseMove = (d, data) => {
+              const x = d.clientX
+              const y = d.clientY
+
+              d3.select(".tooltip") // select tooltip element
+                .text(data.rating.average) // show the requested data in the element 
+                .style("left", x + "px") // assign the position of the  tooltip element to the cursor
+                .style("top", y + "px")
+            }
+
+            const mouseOut = () => {
+              d3.select('.tooltip')
+              .style("opacity", 0)
+            }
 
     return (
         <svg
         ref={ref}
         style={{
           height: 800,
-          width: "100%",
+          width: 800,
           marginRight: "20%",
           marginLeft: "20%"
         }}
       >
-        <g className="plot-area" />
-        <g className="x-axis" />
-        <g className="y-axis" />
+       
       </svg>
     )
 }
