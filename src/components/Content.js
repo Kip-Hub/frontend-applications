@@ -12,10 +12,7 @@ const Content = () => {
 
     return (
       <main className="App-content">
-      {/* <pre>
-      {Json &&  JSON.stringify(Json[0], null, 1) }
-      </pre> */}
-      <section class="radio">
+      <section className="radio">
           {/* <label><input onChange={onChange} type="radio" name="chart" value="alldata" id="filter"/>all seasons </label> */}
           <label><input type="radio" name="chart" value="alldata" id="filter"/>all seasons </label>
           <label><input type="radio" name="chart" value="season_1" id="filter"/>season 1 </label>
