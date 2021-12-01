@@ -13,7 +13,6 @@ const Content = () => {
     return (
       <main className="App-content">
       <section className="radio">
-          {/* <label><input onChange={onChange} type="radio" name="chart" value="alldata" id="filter"/>all seasons </label> */}
           <label><input type="radio" name="chart" value="alldata" id="filter"/>all seasons </label>
           <label><input type="radio" name="chart" value="season_1" id="filter"/>season 1 </label>
           <label><input type="radio" name="chart" value="season_2" id="filter" />season 2 </label>

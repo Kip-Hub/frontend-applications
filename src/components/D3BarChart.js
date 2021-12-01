@@ -62,6 +62,7 @@ const D3BarChart = ({ data }) => {
         .on("mouseover", mouseOver)
         .on("mousemove", mouseMove) // mouse events that call functions
         .on("mouseleave", mouseOut)
+        .on("click", episodeDetails)
         .transition() // create transition on the rendering of the width of the bar
         .duration(600)
         .ease(d3.easeBackOut.overshoot(1.7)) // easing with an effect
@@ -75,7 +76,34 @@ const D3BarChart = ({ data }) => {
       .style("background-color", "#282c34")
       .style("color", "white")
       .style("padding", "0.2em")
-      .style("position", "absolute");
+      .style("position", "absolute")
+
+    d3.select("body")
+      .append("section")
+      .style("opacity", 0)
+      .attr("class", "episodeContainer")
+      .style("background-color", "#282c34")
+      .style("color", "white")
+      .style("position", "absolute")
+      
+    d3.select(".episodeContainer")
+      .append("img")
+      .attr("class", "episodeImage")
+      .on("click", removeEpisode)
+
+    d3.select(".episodeContainer")
+      .append("p")
+      .attr("class", "episodeTitle")
+
+    d3.select(".episodeContainer")
+      .append("p")
+      .attr("class", "episodeAirdate")
+
+    d3.select(".episodeContainer")
+      .append("p")
+      .attr("class", "episodeSummary")
+
+    
 
     d3.selectAll("#filter").on("change", (e) => {
       const selectedValue = e.target.value;
@@ -108,6 +136,36 @@ const D3BarChart = ({ data }) => {
   const mouseOut = () => {
     d3.select(".tooltip").style("opacity", 0);
   };
+
+  const episodeDetails = (d, data) => {
+    const x = d.clientX;
+    const y = d.clientY;
+
+    d3.select(".episodeContainer") 
+      .style("opacity", 1)
+      .style("z-index", 1)
+      .style("left", x + "px") 
+      .style("top", y + "px");
+    d3.select(".episodeImage")
+      .attr('src', data.image.medium)
+    d3.select(".episodeTitle")
+      .text("S" + data.season + "E" + data.number + ": " + data.name)
+    d3.select(".episodeAirdate")
+      .text("Aired: " +  data.airdate)
+    d3.select(".episodeSummary")
+      .text(removeP(data.summary))
+  }
+
+  function removeP (item) {
+    let result = item.replaceAll('<p>', '').replaceAll('</p>', '')
+    return result
+  }
+
+  const removeEpisode = () => {
+    d3.select(".episodeContainer") // select tooltip element
+      .style("opacity", 0)
+      .style("z-index", 0)
+  }
 
   return (
     <svg
