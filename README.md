@@ -1,13 +1,6 @@
 # Frontend Applications
 
-![preview](https://i.imgur.com/ULLRS0D.png)
-<details>
-
-<summary>Preview</summary
-
 ![gif](https://i.imgur.com/YHXXoE2.gif)
-
-</details>
 
 ## 📁 Contents
 [🚀 Description](https://github.com/Kip-Hub/frontend-applications#-description)  
