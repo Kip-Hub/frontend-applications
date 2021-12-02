@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Frontend Applications
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![preview](https://i.imgur.com/ULLRS0D.png)
+<details>
 
-## Available Scripts
+<summary>Preview</summary
 
-In the project directory, you can run:
+![gif](https://i.imgur.com/YHXXoE2.gif)
 
-### `npm start`
+</details>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 📁 Contents
+[🚀 Description](https://github.com/Kip-Hub/frontend-applications#-description)  
+[⚙️ Installation](https://github.com/Kip-Hub/frontend-applications#-installation)  
+[📚 Wiki](https://github.com/Kip-Hub/frontend-applicationsa#-wiki)  
+[🧩 Resources](https://github.com/Kip-Hub/frontend-applications#-resources)  
+[🙋 Sources](https://github.com/Kip-Hub/frontend-applications#sources)  
+[📎 License](https://github.com/Kip-Hub/frontend-applications#-license)  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🚀 Description
 
-### `npm test`
+This repository consists of my work for the Frontend Applications course, which is part of the [Information Design - Tech Track](https://github.com/cmda-tt) given in the 3rd year of the study Communication and Multimedia design at the Hogeschool van Amsterdam.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The goal of this course is to learn how to work with front-end frameworks such as ReactJS 
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The criteria for the project can be found [here](https://github.com/Kip-Hub/frontend-applications/wiki/rubric)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ⚙️ Installation
 
-### `npm run eject`
+If you would like to use this repository on your own computer, you can paste the following code into your terminal to create a local copy of this project.  
+(Note: you are required to have [Git](https://git-scm.com/downloads) installed on your machine for this to work)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+git clone https://github.com/Kip-Hub/frontend-data.git
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+After making a local copy of the repo you'll have to run the following code from within the folder you just created, to install the needed dependancies.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm install
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+After installing the dependancies you can run the project with
 
-## Learn More
+```
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📚 Wiki
 
-### Code Splitting
+Everything I have done during this project can be found on the [wiki](https://github.com/Kip-Hub/frontend-applications/wiki).  
+I will document my daily pursuits and progress in the [logboek](https://github.com/Kip-Hub/frontend-applications/wiki/logboek) which can also be found on the wiki, along with some theoretical documentation and other project oriented documentation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🧩 Data
 
-### Analyzing the Bundle Size
+Within this project I have used the [TVMaze API](https://www.tvmaze.com/api) which is an API that revolves around data from tv shows, and the episodes it consists of.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🙋 Resources
 
-### Making a Progressive Web App
+* https://www.sgratzl.com/d3tutorial/  
+* https://reactjs.org/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## 📎 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Author: [Daniel Kip](https://github.com/Kip-Hub)  
+License used for this project: [MIT](https://github.com/Kip-Hub/frontend-applications/blob/main/LICENSE)
