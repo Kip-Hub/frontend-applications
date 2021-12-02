@@ -12,9 +12,9 @@
 ## 📁 Contents
 [🚀 Description](https://github.com/Kip-Hub/frontend-applications#-description)  
 [⚙️ Installation](https://github.com/Kip-Hub/frontend-applications#-installation)  
-[📚 Wiki](https://github.com/Kip-Hub/frontend-applicationsa#-wiki)  
+[📚 Wiki](https://github.com/Kip-Hub/frontend-applications#-wiki)  
 [🧩 Resources](https://github.com/Kip-Hub/frontend-applications#-resources)  
-[🙋 Sources](https://github.com/Kip-Hub/frontend-applications#sources)  
+[🙋 Sources](https://github.com/Kip-Hub/frontend-applications#-sources)  
 [📎 License](https://github.com/Kip-Hub/frontend-applications#-license)  
 
 ## 🚀 Description
