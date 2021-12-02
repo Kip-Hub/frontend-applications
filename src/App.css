@@ -32,6 +32,10 @@
     color: white;
 }
 
+.radio {
+    margin-top: 1em;
+}
+
 #episodeContainer {
     max-width: 300px;
     border-radius: 3%;
@@ -44,7 +48,9 @@
     border-top-right-radius: 3%;
 }
 
-.episodeTitle, .episodeAirdate, .episodeSummary {
+.episodeTitle,
+.episodeAirdate,
+.episodeSummary {
     margin: 1em;
 }
 

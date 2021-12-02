@@ -1,8 +1,9 @@
-const Header = () => {
+const Header = ({children}) => {
 
     return (
       <header className="App-header">
-        <h1>Breaking bad episode ratings</h1>
+        <h1>Frontend-applications</h1>
+        <h3>Breaking bad episode ratings</h3>
       </header>
     )
 }

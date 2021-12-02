@@ -89,7 +89,7 @@ const D3BarChart = ({ data }) => {
     d3.select("#episodeContainer")
       .append("img")
       .attr("class", "episodeImage")
-      .on("click", removeContainer)
+      .on("mouseleave", removeContainer)
 
     d3.select("#episodeContainer")
       .append("p")
