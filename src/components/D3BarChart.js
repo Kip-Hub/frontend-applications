@@ -3,11 +3,11 @@ import React from "react";
 import * as d3 from "d3";
 
 const D3BarChart = ({ data }) => {
-    const margin = { top: 40, bottom: 10, left: 120, right: 120 };
+    const margin = { top: 40, bottom: 10, left: 120, right: 120 };  // default sizing 
     const width = 800 - margin.left - margin.right;
     let height = 800 - margin.top - margin.bottom;
   
-    const ref = useD3((svg) => {
+    const ref = useD3((svg) => { // using the useD3 hook
     
     const g = svg
       .append("g")
@@ -21,19 +21,19 @@ const D3BarChart = ({ data }) => {
     const yaxis = d3.axisLeft().scale(yscale);
     const g_yaxis = g.append("g").attr("class", "y axis");
 
-    update(data);
+    update(data); // rendering with initial data
 
     function update(data) {
 
-      xscale.domain([0, 10]);
-      yscale.domain(data.map((d) => d.name));
+      xscale.domain([0, 10]); // setting up domain of xscale to 1-10
+      yscale.domain(data.map((d) => d.name)); // setting up domain of yscale to all names of episodes
 
-      g_xaxis.transition().call(xaxis);
+      g_xaxis.transition().call(xaxis); // show values on the axis
       g_yaxis.transition().call(yaxis);
 
-      const color = d3.scaleSequential(d3.interpolateRgb("#85d6d6", "#2335cf"));
+      const color = d3.scaleSequential(d3.interpolateRgb("#85d6d6", "#2335cf")); // make colorscale
       color.domain([
-        d3.min(data, (d) => d.rating.average),
+        d3.min(data, (d) => d.rating.average), // set domain to smallest and biggest rating
         d3.max(data, (d) => d.rating.average),
       ]);
 
@@ -69,7 +69,7 @@ const D3BarChart = ({ data }) => {
         .attr("width", (d) => xscale(d.rating.average));
     }
 
-    d3.select("body")
+    d3.select("body") // create tooltip element
       .append("p")
       .style("opacity", 0)
       .attr("class", "tooltip")
@@ -78,7 +78,7 @@ const D3BarChart = ({ data }) => {
       .style("padding", "0.2em")
       .style("position", "absolute")
 
-    d3.select("body")
+    d3.select("body") // create episode details element
       .append("section")
       .attr("id", "episodeContainer")
       .attr("class", "hidden")
@@ -86,34 +86,34 @@ const D3BarChart = ({ data }) => {
       .style("color", "white")
       .style("position", "absolute")
       
-    d3.select("#episodeContainer")
+    d3.select("#episodeContainer") 
       .append("img")
       .attr("class", "episodeImage")
       .on("mouseleave", removeContainer)
 
-    d3.select("#episodeContainer")
-      .append("p")
+    d3.select("#episodeContainer") // element to contain title
+      .append("p") 
       .attr("class", "episodeTitle")
 
-    d3.select("#episodeContainer")
+    d3.select("#episodeContainer") // element to contain air date
       .append("p")
       .attr("class", "episodeAirdate")
 
-    d3.select("#episodeContainer")
+    d3.select("#episodeContainer") // element to contain summary
       .append("p")
       .attr("class", "episodeSummary")
 
     
 
-    d3.selectAll("#filter").on("change", (e) => {
-      const selectedValue = e.target.value;
-      if (selectedValue == "alldata") {
-        update(data);
+    d3.selectAll("#filter").on("change", (e) => { // handler for changes on filter radiobuttons
+      const selectedValue = e.target.value; // value of the element thats changed
+      if (selectedValue == "alldata") { 
+        update(data); //call createChart to re-render the chart
         console.log(selectedValue);
       } else {
         height = 400 - margin.top - margin.bottom;
-        const seasonValue = +selectedValue.split("_")[1];
-        const filtered_data = data.filter((d) => d.season === seasonValue);
+        const seasonValue = +selectedValue.split("_")[1]; // split the value of the selected radio, make it a numeric value and keep the number 
+        const filtered_data = data.filter((d) => d.season === seasonValue); // create filter and filter fetched data
         update(filtered_data);
         console.log(selectedValue);
       }
@@ -121,10 +121,10 @@ const D3BarChart = ({ data }) => {
   });
 
   const mouseOver = () => {
-    d3.select(".tooltip").style("opacity", 1);
+    d3.select(".tooltip").style("opacity", 1); // show tooltip on hover
   };
 
-  const mouseMove = (d, data) => {
+  const mouseMove = (d, data) => { // tooltip on cursor position
     const x = d.clientX;
     const y = d.clientY;
 
@@ -135,10 +135,10 @@ const D3BarChart = ({ data }) => {
   };
 
   const mouseOut = () => {
-    d3.select(".tooltip").style("opacity", 0);
+    d3.select(".tooltip").style("opacity", 0); // stop showing tooltip
   };
 
-  const episodeDetails = (d, data) => {
+  const episodeDetails = (d, data) => { // show episode element on cursor position
     const x = d.clientX;
     const y = d.clientY;
 
@@ -146,29 +146,29 @@ const D3BarChart = ({ data }) => {
       .classed('hidden', false)
       .style("left", x + "px") 
       .style("top", y + "px");
-    d3.select(".episodeImage")
-      .attr('src', data.image.medium)
-    d3.select(".episodeTitle")
+    d3.select(".episodeImage") // image
+      .attr('src', data.image.medium) 
+    d3.select(".episodeTitle") // title
       .text("S" + data.season + "E" + data.number + ": " + data.name)
-    d3.select(".episodeAirdate")
+    d3.select(".episodeAirdate") // date
       .text(data.airdate)
-    d3.select(".episodeSummary")
+    d3.select(".episodeSummary") // summary
       .text(removeTags(data.summary))
   }
 
-  const removeTags = (item) => {
+  const removeTags = (item) => { // sanitising function to remove tags in API data
     let result = item.replaceAll('<p>', '').replaceAll('</p>', '').replace('<br>', '')
     return result
   }
 
-  const removeContainer = () => {
+  const removeContainer = () => { // stop showing episode element
     d3.select("#episodeContainer") // select tooltip element
     .attr("class", "hidden")
   }
 
   return (
     <svg
-      ref={ref}
+      ref={ref} // use reference in svg
       style={{
         height: 800,
         width: 800,

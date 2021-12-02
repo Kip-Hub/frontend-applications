@@ -1,4 +1,4 @@
-const Header = ({children}) => {
+const Header = () => {
 
     return (
       <header className="App-header">

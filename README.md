@@ -60,4 +60,4 @@ Within this project I have used the [TVMaze API](https://www.tvmaze.com/api) whi
 ## 📎 License
 
 Author: [Daniel Kip](https://github.com/Kip-Hub)  
-License used for this project: [MIT](https://github.com/Kip-Hub/frontend-applications/blob/main/LICENSE)
+License used for this project: [MIT](https://github.com/Kip-Hub/frontend-applications/blob/master/LICENSE)

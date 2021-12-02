@@ -4,13 +4,13 @@ import D3BarChart from './D3BarChart';
 
 const Content = () => {
 
-  const [Json, setJson] = useState(null);
+  const [Json, setJson] = useState(null); // fetching the data and setting state 
     useEffect(() => {
       FetchData().then(data => setJson(data));
     },[])
 
     while (!Json) {
-      return <p>fetching data...</p>
+      return <p>fetching data...</p> // If there is no data
     }
 
     return (

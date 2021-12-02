@@ -1,5 +1,5 @@
-const FetchData = () => {
-     return new Promise((resolve) => {
+const FetchData = () => { // fetching the data from api
+     return new Promise((resolve) => { 
         fetch("https://api.tvmaze.com/shows/169/episodes")
         .then(response => response.json())
 			.then(data => {
