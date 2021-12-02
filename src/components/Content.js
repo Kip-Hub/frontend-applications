@@ -1,14 +1,17 @@
-import logo from '../logo.svg';
 import React, { useState, useEffect } from "react";
 import FetchData from '../modules/fetchData';
 import D3BarChart from './D3BarChart';
 
 const Content = () => {
-  // const [seasonValue, setSeasonValue] = useState(null);
+
   const [Json, setJson] = useState(null);
     useEffect(() => {
       FetchData().then(data => setJson(data));
     },[])
+
+    while (!Json) {
+      return <p>fetching data...</p>
+    }
 
     return (
       <main className="App-content">

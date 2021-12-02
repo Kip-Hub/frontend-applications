@@ -3,12 +3,12 @@ import React from "react";
 import * as d3 from "d3";
 
 const D3BarChart = ({ data }) => {
-
-  const ref = useD3((svg) => {
     const margin = { top: 40, bottom: 10, left: 120, right: 120 };
     const width = 800 - margin.left - margin.right;
-    const height = 800 - margin.top - margin.bottom;
-
+    let height = 800 - margin.top - margin.bottom;
+  
+    const ref = useD3((svg) => {
+    
     const g = svg
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
@@ -80,26 +80,26 @@ const D3BarChart = ({ data }) => {
 
     d3.select("body")
       .append("section")
-      .style("opacity", 0)
-      .attr("class", "episodeContainer")
+      .attr("id", "episodeContainer")
+      .attr("class", "hidden")
       .style("background-color", "#282c34")
       .style("color", "white")
       .style("position", "absolute")
       
-    d3.select(".episodeContainer")
+    d3.select("#episodeContainer")
       .append("img")
       .attr("class", "episodeImage")
-      .on("click", removeEpisode)
+      .on("click", removeContainer)
 
-    d3.select(".episodeContainer")
+    d3.select("#episodeContainer")
       .append("p")
       .attr("class", "episodeTitle")
 
-    d3.select(".episodeContainer")
+    d3.select("#episodeContainer")
       .append("p")
       .attr("class", "episodeAirdate")
 
-    d3.select(".episodeContainer")
+    d3.select("#episodeContainer")
       .append("p")
       .attr("class", "episodeSummary")
 
@@ -111,6 +111,7 @@ const D3BarChart = ({ data }) => {
         update(data);
         console.log(selectedValue);
       } else {
+        height = 400 - margin.top - margin.bottom;
         const seasonValue = +selectedValue.split("_")[1];
         const filtered_data = data.filter((d) => d.season === seasonValue);
         update(filtered_data);
@@ -141,9 +142,8 @@ const D3BarChart = ({ data }) => {
     const x = d.clientX;
     const y = d.clientY;
 
-    d3.select(".episodeContainer") 
-      .style("opacity", 1)
-      .style("z-index", 1)
+    d3.select("#episodeContainer") 
+      .classed('hidden', false)
       .style("left", x + "px") 
       .style("top", y + "px");
     d3.select(".episodeImage")
@@ -151,20 +151,19 @@ const D3BarChart = ({ data }) => {
     d3.select(".episodeTitle")
       .text("S" + data.season + "E" + data.number + ": " + data.name)
     d3.select(".episodeAirdate")
-      .text("Aired: " +  data.airdate)
+      .text(data.airdate)
     d3.select(".episodeSummary")
-      .text(removeP(data.summary))
+      .text(removeTags(data.summary))
   }
 
-  function removeP (item) {
-    let result = item.replaceAll('<p>', '').replaceAll('</p>', '')
+  const removeTags = (item) => {
+    let result = item.replaceAll('<p>', '').replaceAll('</p>', '').replace('<br>', '')
     return result
   }
 
-  const removeEpisode = () => {
-    d3.select(".episodeContainer") // select tooltip element
-      .style("opacity", 0)
-      .style("z-index", 0)
+  const removeContainer = () => {
+    d3.select("#episodeContainer") // select tooltip element
+    .attr("class", "hidden")
   }
 
   return (

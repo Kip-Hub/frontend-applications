@@ -32,9 +32,10 @@
     color: white;
 }
 
-.episodeContainer {
+#episodeContainer {
     max-width: 300px;
     border-radius: 3%;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.4);
 }
 
 .episodeImage {
@@ -43,12 +44,24 @@
     border-top-right-radius: 3%;
 }
 
+.episodeTitle, .episodeAirdate, .episodeSummary {
+    margin: 1em;
+}
+
+.episodeTitle {
+    font-weight: bold;
+}
+
 rect {
     fill-opacity: 0.8;
 }
 
 rect:hover {
     fill-opacity: 1;
+}
+
+.hidden {
+    display: none;
 }
 
 .App-link {
